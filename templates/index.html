@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>End to End Project</title>
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+<center>
+    <div class="background"></div>
+    <div class="form">
+    <h1> Check how modern is your property! </h1><br>
+
+    <div>
+        <form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
+            <h2>Upload a photo of any room in your house.</h2>
+            <input id="first" name="img" type="file" accept="image/*">
+            <input type="submit">
+
+        </form>
+    </div>
+
+    {% if img_shape %}
+    <h3>The shape for the image is {{img_shape}}.</h2> 
+    {% endif %}
+
+    {% if pred_output %}
+    <h2>Predicted label: {{pred_output.label}} with {{pred_output.probability}}% confidence.</h2> 
+    {% endif %}
+
+    {% if user_image %}
+    <img src="{{ user_image }}" alt="User Image" height="350" width="350">
+    {% endif %}
+    </div>
+    </center>
+</body>
+</html> 
